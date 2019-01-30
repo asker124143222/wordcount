@@ -21,6 +21,7 @@ public class WordCount {
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
         FileSystem fileSystem = outPath.getFileSystem(conf);
+        //删除输出路径
         if(fileSystem.exists(outPath))
         {
             fileSystem.delete(outPath,true);
