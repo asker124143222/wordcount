@@ -39,8 +39,8 @@ public class WordCount {
         //job.setMapOutputKeyClass(Text.class);
         //job.setMapOutputValueClass(IntWritable.class);
         //hadoop默认的是TextInputFormat和TextOutputFormat,所以说我们这里可以不用配置。
-        //job.setInputFormatClass(TextInputFormat.class);
-        //job.setOutputFormatClass(TextOutputFormat.class);
+//        job.setInputFormatClass(TextInputFormat.class);
+//        job.setOutputFormatClass(TextOutputFormat.class);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
