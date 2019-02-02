@@ -33,16 +33,24 @@ public class WordCount {
 //        conf.set("fs.defaultFS", "file:///");
 
         //运行集群模式，就是把程序提交到yarn中去运行
-        //要想运行为集群模式，以下3个参数要指定为集群上的值
+        //要想运行为集群模式，以下5个参数要指定为集群上的值（实际上就是hadoop集群上的配置）
+        //还需要把hadoop集群上core-site.xml,yarn-site.xml,mapred-site.xml拷贝到resources目录下或者把这几个文件的核心配置写入conf变量
         //如果是把程序打包成jar,hadoop jar运行，不需要写下面，因为hadoop jar脚本自动把集群中配置好的配置文件加载给该程序
-//        conf.set("mapreduce.framework.name", "yarn");
-//        conf.set("yarn.resourcemanager.hostname", "bigdata-senior01.home.com");
-//        conf.set("fs.defaultFS","hdfs://bigdata-senior01.home.com:9000");
+        conf.set("mapreduce.framework.name", "yarn");
+        conf.set("yarn.nodemanager.aux-services","mapreduce_shuffle");
+        conf.set("yarn.resourcemanager.hostname", "bigdata-senior01.home.com");
+        conf.set("hadoop.tmp.dir","/opt/data/tmp");
+        conf.set("mapreduce.application.classpath","/opt/modules/hadoop-3.1.0/share/hadoop/mapreduce/*, /opt/modules/hadoop-3.1.0/share/hadoop/mapreduce/lib-examples/*");
+
+        //跨平台提交
+        conf.set("mapreduce.app-submission.cross-platform", "true");
+        //设置mapred.jar的路径,不然会报找不到
+        conf.set("mapred.jar","E:\\myProgram\\Java\\wordcount\\out\\artifacts\\wordcount_jar\\wordcount.jar");
 
 
         //如果实在非hadoop用户环境下提交任务
-//        System.setProperty("HADOOP_USER_NAME","hadoop");
-//        System.out.println("HADOOP_USER_NAME: "+System.getProperty("HADOOP_USER_NAME"));
+        System.setProperty("HADOOP_USER_NAME","hadoop");
+        System.out.println("HADOOP_USER_NAME: "+System.getProperty("HADOOP_USER_NAME"));
 
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
