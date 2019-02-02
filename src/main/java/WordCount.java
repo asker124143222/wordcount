@@ -41,8 +41,8 @@ public class WordCount {
 
 
         //如果实在非hadoop用户环境下提交任务
-        System.setProperty("HADOOP_USER_NAME","hadoop");
-        System.out.println("HADOOP_USER_NAME: "+System.getProperty("HADOOP_USER_NAME"));
+//        System.setProperty("HADOOP_USER_NAME","hadoop");
+//        System.out.println("HADOOP_USER_NAME: "+System.getProperty("HADOOP_USER_NAME"));
 
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
