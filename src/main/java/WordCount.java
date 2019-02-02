@@ -31,7 +31,8 @@ public class WordCount {
         //到底在哪里，就看以下两行配置你用哪行，默认就是file:///
         conf.set("fs.defaultFS","hdfs://bigdata-senior01.home.com:9000");
 //        conf.set("fs.defaultFS", "file:///");
-
+/*
+        //本地提交到集群上运行
         //运行集群模式，就是把程序提交到yarn中去运行
         //要想运行为集群模式，以下5个参数要指定为集群上的值（实际上就是hadoop集群上的配置）
         //还需要把hadoop集群上core-site.xml,yarn-site.xml,mapred-site.xml拷贝到resources目录下或者把这几个文件的核心配置写入conf变量
@@ -51,6 +52,8 @@ public class WordCount {
         //如果实在非hadoop用户环境下提交任务
         System.setProperty("HADOOP_USER_NAME","hadoop");
         System.out.println("HADOOP_USER_NAME: "+System.getProperty("HADOOP_USER_NAME"));
+
+        */
 
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
