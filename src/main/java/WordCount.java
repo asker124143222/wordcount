@@ -7,7 +7,11 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+import java.net.URI;
+
 public class WordCount {
+
+    private static String HDFSUri = "hdfs://bigdata-senior01.home.com:9000";
 
     public static void main(String[] args) throws Exception {
         if(args.length!=2)
@@ -17,10 +21,18 @@ public class WordCount {
         }
         //Configuration类代表作业的配置，该类会加载mapred-site.xml、hdfs-site.xml、core-site.xml等配置文件。
         Configuration conf =new Configuration();
+        conf.set("fs.defaultFS","hdfs://bigdata-senior01.home.com:9000");
+
+        //本地运行
+//        conf.set("mapred.job.tracker", "local");
+//        conf.set("fs.defaultFS", "hdfs://Hadoop:9000");
+
+        System.setProperty("HADOOP_USER_NAME","hadoop");
 
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
-        FileSystem fileSystem = outPath.getFileSystem(conf);
+//        FileSystem fileSystem = outPath.getFileSystem(conf);
+        FileSystem fileSystem = FileSystem.get(URI.create(HDFSUri),conf);
         //删除输出路径
         if(fileSystem.exists(outPath))
         {
