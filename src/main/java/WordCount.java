@@ -11,7 +11,8 @@ import java.net.URI;
 
 public class WordCount {
 
-    private static String HDFSUri = "hdfs://bigdata-senior01.home.com:9000";
+//    private static String HDFSUri = "hdfs://bigdata-senior01.home.com:9000";
+    private static String HDFSUri = "hdfs://hp4411s.home.com:9000";
 
     public static void main(String[] args) throws Exception {
         if(args.length!=2)
@@ -29,7 +30,7 @@ public class WordCount {
 
         //本地模式运行mr程序时，输入输出的数据可以在本地，也可以在hdfs上
         //到底在哪里，就看以下两行配置你用哪行，默认就是file:///
-        conf.set("fs.defaultFS","hdfs://bigdata-senior01.home.com:9000");
+//        conf.set("fs.defaultFS",HDFSUri);
 //        conf.set("fs.defaultFS", "file:///");
 /*
         //本地提交到集群上运行
@@ -57,8 +58,8 @@ public class WordCount {
 
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
-//        FileSystem fileSystem = outPath.getFileSystem(conf);
-        FileSystem fileSystem = FileSystem.get(URI.create(HDFSUri),conf);
+        FileSystem fileSystem = outPath.getFileSystem(conf);
+//        FileSystem fileSystem = FileSystem.get(URI.create(HDFSUri),conf);
         //删除输出路径
         if(fileSystem.exists(outPath))
         {
