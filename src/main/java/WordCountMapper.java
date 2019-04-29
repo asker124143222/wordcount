@@ -15,7 +15,7 @@ public class WordCountMapper extends Mapper<Object, Text, Text, IntWritable> {
     protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         context.getCounter(Counters.LINES).increment(1);
         String line = value.toString();
-        String[] words = line.split(" ");
+        String[] words = line.split(",");
         for (String word : words) {
             context.getCounter(Counters.WORDS).increment(1);
             System.out.println(word);
