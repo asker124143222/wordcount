@@ -1,8 +1,10 @@
-import org.apache.hadoop.io.IntWritable;
-        import org.apache.hadoop.io.Text;
-        import org.apache.hadoop.mapreduce.Mapper;
+package wordCount;
 
-        import java.io.IOException;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+import java.io.IOException;
 
 
 public class WordCountMapper extends Mapper<Object, Text, Text, IntWritable> {
