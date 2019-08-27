@@ -29,8 +29,8 @@ public class WordCount {
 
         //本地模式运行mr程序时，输入输出的数据可以在本地，也可以在hdfs上
         //到底在哪里，就看以下两行配置你用哪行，默认就是file:///
-        conf.set("fs.defaultFS",HDFSUri);
-//        conf.set("fs.defaultFS", "file:///");
+//        conf.set("fs.defaultFS",HDFSUri);
+        conf.set("fs.defaultFS", "file:///");
 /*
         //本地提交到集群上运行
         //运行集群模式，就是把程序提交到yarn中去运行
@@ -58,7 +58,8 @@ public class WordCount {
         Path outPath = new Path(args[1]);
         //FileSystem里面包括很多系统，不局限于hdfs
 //        FileSystem fileSystem = outPath.getFileSystem(conf);
-        FileSystem fileSystem = FileSystem.get(URI.create(HDFSUri),conf);
+        //FileSystem fileSystem = FileSystem.get(URI.create(HDFSUri),conf);
+        FileSystem fileSystem = FileSystem.get(conf);
         //删除输出路径
         if(fileSystem.exists(outPath))
         {
