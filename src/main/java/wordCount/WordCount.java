@@ -6,6 +6,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -80,6 +81,13 @@ public class WordCount {
         //hadoop默认的是TextInputFormat和TextOutputFormat,所以说我们这里可以不用配置。
 //        job.setInputFormatClass(TextInputFormat.class);
 //        job.setOutputFormatClass(TextOutputFormat.class);
+
+
+        //对小文件进行组合，32M划分一个片
+        //如果不设置InputFormat，它默认用的是TextInputFormat.class
+        job.setInputFormatClass(CombineTextInputFormat.class);
+        //虚拟存储切片最大值设置 32m
+        CombineTextInputFormat.setMaxInputSplitSize(job,1024*1024*32);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);

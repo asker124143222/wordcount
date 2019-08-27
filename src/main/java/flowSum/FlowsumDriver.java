@@ -5,6 +5,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -32,6 +33,10 @@ public class FlowsumDriver {
         job.setReducerClass(FlowCountReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
+
+        //对小文件进行组合，128M划分一个片
+        job.setInputFormatClass(CombineTextInputFormat.class);
+        CombineTextInputFormat.setMaxInputSplitSize(job,1024*1024*128);
 
         FileInputFormat.addInputPath(job,new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
