@@ -41,7 +41,6 @@ public class FlowsumDriver {
         FileInputFormat.addInputPath(job,new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
 
-
         Path outPath = new Path(args[1]);
         FileSystem fs = FileSystem.get(conf);
         if(fs.exists(outPath)){
