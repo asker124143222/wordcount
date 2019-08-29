@@ -1,5 +1,6 @@
 package flowSum;
 
+import CustomPartitioner.ProvincePartitioner;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -31,12 +32,18 @@ public class FlowsumDriver {
         job.setJarByClass(FlowsumDriver.class);
         job.setMapperClass(FlowCountMapper.class);
         job.setReducerClass(FlowCountReducer.class);
+
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
-        //对小文件进行组合，128M划分一个片
+        //使用CombineTextInputFormat对小文件进行组合，128M划分一个片
         job.setInputFormatClass(CombineTextInputFormat.class);
         CombineTextInputFormat.setMaxInputSplitSize(job,1024*1024*128);
+
+        //自定义分区，输出5个文件
+        job.setPartitionerClass(ProvincePartitioner.class);
+        job.setNumReduceTasks(5);
+
 
         FileInputFormat.addInputPath(job,new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
