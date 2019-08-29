@@ -1,5 +1,6 @@
 package WritableComparableEx;
 
+import CustomPartitioner.PhonePartitioner;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -38,6 +39,9 @@ public class FlowSortedDriver {
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBeanSorted.class);
+
+        job.setPartitionerClass(PhonePartitioner.class);
+        job.setNumReduceTasks(5);
 
         FileInputFormat.addInputPath(job,new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
