@@ -14,7 +14,7 @@ import java.io.IOException;
  * @Author: xu.dm
  * @Date: 2019/8/30 16:25
  * @Version: 1.0
- * @Description: 求解每个订单最大单价订单。
+ * @Description: 求解每个订单最大单价订单以及取TopN。
  **/
 public class OrderDriver {
     public static void main(String[] args) throws Exception, IOException {
