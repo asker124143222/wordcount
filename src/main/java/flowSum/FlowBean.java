@@ -11,6 +11,8 @@ import java.io.IOException;
  * @Date: 2019/8/27 14:19
  * @Version: 1.0
  * @Description: 统计手机号上行、下行流量合计，并统计上下行总流量
+ * phone_data.txt
+ * 1	13736230513	192.196.100.1	www.atguigu.com	2481	24681	200
  **/
 public class FlowBean implements Writable {
     //上行

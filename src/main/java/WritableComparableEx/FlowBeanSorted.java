@@ -11,6 +11,8 @@ import java.io.IOException;
  * @Date: 2019/8/29 16:17
  * @Version: 1.0
  * @Description: 统计总流量，按总流量倒序输出数据
+ * phone_data.txt
+ * 1	13736230513	192.196.100.1	www.atguigu.com	2481	24681	200
  **/
 public class FlowBeanSorted implements WritableComparable<FlowBeanSorted> {
     //上行
