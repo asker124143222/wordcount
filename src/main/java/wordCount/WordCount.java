@@ -5,6 +5,8 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.compress.BZip2Codec;
+import org.apache.hadoop.io.compress.CompressionCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -24,6 +26,14 @@ public class WordCount {
         long startTime = System.currentTimeMillis();
         //Configuration类代表作业的配置，该类会加载mapred-site.xml、hdfs-site.xml、core-site.xml等配置文件。
         Configuration conf =new Configuration();
+
+        // 开启map端输出压缩
+        conf.setBoolean("mapreduce.map.output.compress", true);
+        // 设置map端输出压缩方式
+        conf.setClass("mapreduce.map.output.compress.codec", BZip2Codec.class, CompressionCodec.class);
+
+
+
         //本地运行
         //是否运行为本地模式，就是看这个参数值是否为local，默认就是local
 //        conf.set("mapreduce.framework.name", "local");
@@ -97,6 +107,11 @@ public class WordCount {
         //从方法名称可以看出，可以通过多次调用这个方法来实现多路径的输入。
         FileInputFormat.addInputPath(job,new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
+
+        //设置reduce端输出开启压缩
+        FileOutputFormat.setCompressOutput(job,true);
+        // 设置压缩的方式
+        FileOutputFormat.setOutputCompressorClass(job,org.apache.hadoop.io.compress.BZip2Codec.class);
 
         //将job中配置的相关参数，以及job所用的java类所在的jar包，提交给yarn去运行
 //        job.submit();
