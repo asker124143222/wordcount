@@ -14,15 +14,14 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  * @Author: xu.dm
  * @Date: 2019/8/28 11:18
  * @Version: 1.0
- * @Description: KeyValueTextInputFormat样例
+ * @Description:
+ * KeyValueTextInputFormat样例
+ * NLineInputFormat样例
  **/
 public class KVTextDriver {
     public static void main(String args[]) throws Exception{
-        if(args.length!=2)
-        {
-            System.err.println("使用格式：KVTextDriver <input path> <output path>");
-            System.exit(-1);
-        }
+
+        args = new String[]{"input/wc*.txt","output/"};
 
         Configuration conf = new Configuration();
         // 设置输入格式KeyValueTextInputFormat的分隔符，缺省是"\t"

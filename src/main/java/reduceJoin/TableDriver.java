@@ -16,15 +16,11 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  */
 public class TableDriver {
     public static void main(String args[]) throws Exception{
-        if(args.length!=2)
-        {
-            System.err.println("使用格式：TableDriver <input path> <output path>");
-            System.exit(-1);
-        }
 
+        args = new String[]{"input2/","output/"};
         //input2
         //args[0]  orderlist.txt订单
-        //args[1]  pdlist.txt 商品
+        //         pdlist.txt 商品
 
         // 1 获取配置信息，或者job对象实例
         Configuration conf = new Configuration();

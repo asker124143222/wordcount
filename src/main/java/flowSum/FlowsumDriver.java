@@ -18,11 +18,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  **/
 public class FlowsumDriver {
     public static void main(String args[]) throws Exception{
-        if(args.length!=2)
-        {
-            System.err.println("使用格式：FlowSum <input path> <output path>");
-            System.exit(-1);
-        }
+
+
+        args = new String[]{"input/phone*.txt","output/"};
 
         long startTime = System.currentTimeMillis();
         Configuration conf = new Configuration();

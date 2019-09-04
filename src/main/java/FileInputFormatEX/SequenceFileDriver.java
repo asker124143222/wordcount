@@ -18,10 +18,9 @@ import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
  **/
 public class SequenceFileDriver {
     public static void main(String args[]) throws Exception{
-        if(args.length!=2){
-            System.err.println("使用格式：SequenceFileDriver <input path> <output path>");
-            System.exit(-1);
-        }
+
+        args = new String[]{"input/","output/"};
+
         Configuration conf = new Configuration();
 
         Job job = Job.getInstance(conf,"合并小文件");

@@ -17,11 +17,8 @@ public class WordCount {
     private static String HDFSUri = "hdfs://vmhome10.com:9000";
 
     public static void main(String[] args) throws Exception {
-        if(args.length!=2)
-        {
-            System.err.println("使用格式：WordCount <input path> <output path>");
-            System.exit(-1);
-        }
+
+        args = new String[]{"input/","output/"};
 
         long startTime = System.currentTimeMillis();
         //Configuration类代表作业的配置，该类会加载mapred-site.xml、hdfs-site.xml、core-site.xml等配置文件。

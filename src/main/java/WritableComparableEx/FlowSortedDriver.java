@@ -17,12 +17,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  **/
 public class FlowSortedDriver {
     public static void main(String args[]) throws Exception{
-        if(args.length!=2)
-        {
-            System.err.println("使用格式：FlowSortedDriver <input path> <output path>");
-            System.exit(-1);
-        }
-
+        args = new String[]{"input/phone*.txt","output/"};
 
         Configuration conf  = new Configuration();
 

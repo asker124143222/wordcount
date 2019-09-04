@@ -13,6 +13,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  * @Date: 2019/9/3 17:00
  * @Version: 1.0
  * @Description: 两个job串联，job1->job2
+ * 按文件分别求词频
+ * 第一个mapreduce实现分别求词频，词与文件名组合成key
+ * 第二个mapreduce实现格式调整，将上一步的key拆分，然后与值组合
  **/
 public class OneIndexDriver {
     public static void main(String args[]) throws Exception{

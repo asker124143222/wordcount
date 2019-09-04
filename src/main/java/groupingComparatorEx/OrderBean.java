@@ -11,6 +11,8 @@ import java.io.IOException;
  * @Date: 2019/8/30 16:00
  * @Version: 1.0
  * @Description: 订单，实现订单id升序，价格降序
+ * 0000001	Pdt_01	222.8
+ * 0000002	Pdt_05	722.4
  **/
 public class OrderBean implements WritableComparable<OrderBean> {
 

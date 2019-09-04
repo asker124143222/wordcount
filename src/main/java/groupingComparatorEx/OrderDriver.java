@@ -18,13 +18,8 @@ import java.io.IOException;
  **/
 public class OrderDriver {
     public static void main(String[] args) throws Exception, IOException {
-        if(args.length!=2)
-        {
-            System.err.println("使用格式：FlowSortedDriver <input path> <output path>");
-            System.exit(-1);
-        }
 
-
+        args = new String[]{"input/order.txt","output/"};
         // 1 获取配置信息
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf);
